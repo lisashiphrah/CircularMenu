@@ -1,19 +1,18 @@
-﻿$(document).ready(function(){
-    var dataSource = [  {'key': '1', 'value': 'Menu Item 1', 'color' : 'red'},
-                        {'key': '2', 'value': 'Menu Item 2', 'color': 'green'},
-                        {'key': '3', 'value': 'Menu Item 3', 'color': 'blue'},
-                        {'key': '4', 'value': 'Menu Item 4', 'color': 'brown'}
+$(document).ready(function(){
+    
+    var dataSource = [  {'key': '1', 'value': 'Menu Item 1', 'color' : '#EE4266'},
+                        {'key': '2', 'value': 'Menu Item 2', 'color': '#29335C'},
+                        {'key': '3', 'value': 'Menu Item 3', 'color': '#F3A712'},
+                        {'key': '4', 'value': 'Menu Item 4', 'color': '#3CBBB1'}
                      ];
-                var pie = new Pie.Menu('popUp', dataSource); 
+    var pie = new Pie.Menu('popUp', dataSource); 
 
-                pie.click(function (data) { 
-                    alert(data.key + ' => ' + data.value);
-                });
-                
-                $('#showRound').on("click", function (event) {
-                    pie.showMenu(event);
-                })
-            });
+    pie.click(function (data) { 
+        alert(data.key + ' => ' + data.value);
+    });
+
+    pie.showMenu(event);                
+});
 
 (function (Pie) {
 
@@ -37,9 +36,7 @@
 	//-----------------------------------------
 	//	Holds the ARC data that will be used during drawing to the canvas
 	//-----------------------------------------
-    var arc = (function () {
-        
-
+    var arc = (function () {        
         function arc(sAngle, eAngle, id, color) {
             this.sAngle = sAngle; //Start Angle in Radians
             this.eAngle = eAngle; //End Angle in Radians
@@ -48,7 +45,6 @@
             this.arcText = []; //Array of Characters
             this.isSelected = false; //Is selected flag, not leveraging currently
         }
-
         return arc;
     })();
     Pie.Arc = arc;
@@ -70,7 +66,7 @@
             this.width = 0;
             this.height = 0;
             this.radius = 0;
-            this.thickness = 15;
+            this.thickness = 50;
             this.isOpen = false;
             this.center = 0;
             this.canTriggerMouseOver = false;
@@ -97,7 +93,6 @@
                         if (tmpEndRad < 0)
                             tmpEndRad = 2 * Math.PI + tmpEndRad;
                         if (degRad >= tmpStartRad && degRad <= tmpEndRad) {
-                            //alert(pie.dataSource[i].value);
                             pie.callback(pie.dataSource[i]);
                             break;
                         }
@@ -126,14 +121,14 @@
             });
         }
 
-        menu.prototype.showMenu = function (event) {
+        menu.prototype.showMenu = function () {
             if (this.isOpen === true) {
                 var popCtl = $('#' + this.canvasContainer);
                 popCtl.css('display', 'none');
                 this.isOpen = !this.isOpen;
             } else {
                 this.isOpen = !this.isOpen;
-                this.elementName = event.target.id;
+                this.elementName = 'showRound';
                 var popCtl = $('#' + this.canvasContainer);
                 popCtl.css('display', 'block');
                 var elem = $('#' + this.elementName);
