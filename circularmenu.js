@@ -1,9 +1,9 @@
 $(document).ready(function(){
     
-    var dataSource = [  {'key': '1', 'value': 'Menu Item 1', 'color' : '#EE4266'},
-                        {'key': '2', 'value': 'Menu Item 2', 'color': '#29335C'},
-                        {'key': '3', 'value': 'Menu Item 3', 'color': '#F3A712'},
-                        {'key': '4', 'value': 'Menu Item 4', 'color': '#3CBBB1'}
+    var dataSource = [  {'key': '1', 'value': 'Menu Item', 'color' : '#EE4266'},
+                        {'key': '2', 'value': 'Menu Item', 'color': '#29335C'},
+                        {'key': '3', 'value': 'Menu Item', 'color': '#F3A712'},
+                        {'key': '4', 'value': 'Menu Item', 'color': '#3CBBB1'}
                      ];
     var pie = new Pie.Menu('popUp', dataSource); 
 
@@ -111,7 +111,7 @@ $(document).ready(function(){
                     vX = x - pie.center;
                     vY = y - pie.center;
                     var tR = Math.sqrt(vX * vX + vY * vY)
-                    var canvas = $('#' + pie.canvasContainer + ' canvas')[0];
+                    var canvas = $('#popUp' + ' canvas')[0];
                     if (tR >= 60 - pie.thickness / 2 && tR <= 60 + pie.thickness / 2) {
                         canvas.style.cursor = "pointer";
                     } else {
@@ -123,15 +123,14 @@ $(document).ready(function(){
 
         menu.prototype.showMenu = function () {
             if (this.isOpen === true) {
-                var popCtl = $('#' + this.canvasContainer);
+                var popCtl = $('#popUp');
                 popCtl.css('display', 'none');
                 this.isOpen = !this.isOpen;
             } else {
                 this.isOpen = !this.isOpen;
-                this.elementName = 'showRound';
-                var popCtl = $('#' + this.canvasContainer);
+                var popCtl = $('#popUp');
                 popCtl.css('display', 'block');
-                var elem = $('#' + this.elementName);
+                var elem = $('#showRound');
                 var position = elem.position();
                 popCtl.css("top", position.top);
                 popCtl.css("left", position.left + elem.width());
@@ -193,7 +192,7 @@ $(document).ready(function(){
 	//	3) Find positions of Text on Arc
 	//--------------------------------------------------------------
         menu.prototype.measure = function () {
-            var c = canvas = $('#' + this.canvasContainer + ' canvas')[0];
+            var c = canvas = $('#popUp' + ' canvas')[0];
             this.width = c.width;
             this.height = this.width;
             this.radius = this.width / 2.5;
@@ -202,19 +201,18 @@ $(document).ready(function(){
             var r = this.radius;
             
             var count = this.dataSource.length;
-            if (this.isMultiTrack) {
-            } else {
-                var angle = 360 / count; //Each arc Angle
-                for (var i = 0 ; i < count; i++) {
-                    var dSource = this.dataSource[i];
-                    var sAngleDeg = angle * i; //Angle of Arc's starting point in Deg
-                    var eAngleDeg = angle * (i + 1); //Angle of Arcs's end point in Deg
-                    var sAngleRad = sAngleDeg * Math.PI / 180; //Angle of Arc's starting point in Radian
-                    var endAngleRad = eAngleDeg * Math.PI / 180; //Angle of Arcs's end point in Radian
-                    var tArc = new Pie.Arc(sAngleRad, endAngleRad, dSource.key, dSource.color);
-                    tArc.arcText = generateArcText(sAngleDeg, eAngleDeg, dSource.value, this.radius, this.thickness, this.width / 2);
-                    this.arcs.push(tArc);
-                }
+            
+            var angle = 360 / count; //Each arc Angle
+            for (var i = 0 ; i < count; i++) {
+                var dSource = this.dataSource[i];
+                var sAngleDeg = angle * i; //Angle of Arc's starting point in Deg
+                var eAngleDeg = angle * (i + 1); //Angle of Arcs's end point in Deg
+                var sAngleRad = sAngleDeg * Math.PI / 180; //Angle of Arc's starting point in Radian
+                var endAngleRad = eAngleDeg * Math.PI / 180; //Angle of Arcs's end point in Radian
+                var tArc = new Pie.Arc(sAngleRad, endAngleRad, dSource.key, dSource.color);
+                tArc.arcText = generateArcText(sAngleDeg, eAngleDeg, dSource.value, this.radius, this.thickness, this.width / 2);
+                this.arcs.push(tArc);
+                
             }
             this.canTriggerMouseOver = true;
         }
@@ -224,7 +222,7 @@ $(document).ready(function(){
 	//--------------------------------------------------------------
         function drawText(ctx, arc) {
             var arcTextArr = arc.arcText;
-            ctx.font = "12px Georgia";
+            ctx.font = "14px Arial";
             ctx.fillStyle = "black";
             for (var i = 0; i < arcTextArr.length ; i++) {
                 ctx.save();
@@ -232,7 +230,7 @@ $(document).ready(function(){
                 ctx.translate(tmArcText.x, tmArcText.y);
                 ctx.rotate(-tmArcText.angle * Math.PI / 180);
                
-                ctx.fillText(tmArcText.value, 0, 2);
+                ctx.fillText(tmArcText.value, 0, 3);
                 ctx.restore();
             }
         };
@@ -241,8 +239,7 @@ $(document).ready(function(){
 	// This function does drawing of Arc on Canvas
 	//--------------------------------------------------------------
         menu.prototype.draw = function () {
-            //var c = document.getElementById('myCanvas');//To do find canvas
-            var canvas = $('#' + this.canvasContainer + ' canvas')[0];//document.getElementById(this.canvasElement);
+            var canvas = $('#popUp' + ' canvas')[0];
             var ctx = canvas.getContext('2d');
             for (var i = 0; i < this.arcs.length; i++) {
                 var tArc = this.arcs[i];
