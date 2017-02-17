@@ -7,8 +7,6 @@ $(document).ready(function(){
                      ];
     var pie = new Pie.Menu('popUp', dataSource); 
 
-    pie.click(function (data) { 
-        alert(data.key + ' => ' + data.value);
     });
 
     pie.showMenu(event);                
