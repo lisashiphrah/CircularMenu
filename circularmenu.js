@@ -170,7 +170,7 @@ $(document).ready(function(){
 	//----------------------------------------- 
        function generateArcText(sAngleDeg, eAngleDeg, value, radius, trackThickness, center) {
             var strArr = value.split('').reverse();
-            var charAngle = 10;
+            var charAngle = 5;
             var angleDeg = (eAngleDeg - sAngleDeg - strArr.length * charAngle) / 2;
             var archTextArr = [];
             for (var i = 0; i < strArr.length; i++) {
@@ -210,7 +210,7 @@ $(document).ready(function(){
                 var sAngleRad = sAngleDeg * Math.PI / 180; //Angle of Arc's starting point in Radian
                 var endAngleRad = eAngleDeg * Math.PI / 180; //Angle of Arcs's end point in Radian
                 var tArc = new Pie.Arc(sAngleRad, endAngleRad, dSource.key, dSource.color);
-                tArc.arcText = generateArcText(sAngleDeg, eAngleDeg, dSource.value, this.radius, this.thickness, this.width / 2);
+                tArc.arcText = generateArcText(sAngleDeg, eAngleDeg+20, dSource.value, this.radius, this.thickness, this.width / 2);
                 this.arcs.push(tArc);
                 
             }
