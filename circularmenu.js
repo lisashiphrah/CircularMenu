@@ -6,9 +6,6 @@ $(document).ready(function(){
                         {'key': '4', 'value': 'Menu Item', 'color': '#3CBBB1'}
                      ];
     var pie = new Pie.Menu('popUp', dataSource); 
-
-    });
-
     pie.showMenu(event);                
 });
 
