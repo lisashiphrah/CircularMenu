@@ -222,7 +222,7 @@ $(document).ready(function(){
 	//--------------------------------------------------------------
         function drawText(ctx, arc) {
             var arcTextArr = arc.arcText;
-            ctx.font = "14px Arial";
+            ctx.font = "14px 'Trebuchet MS'";
             ctx.fillStyle = "black";
             for (var i = 0; i < arcTextArr.length ; i++) {
                 ctx.save();
