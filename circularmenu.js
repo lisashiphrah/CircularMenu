@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
-    var dataSource = [  {'key': '1', 'value': 'Menu Item', 'color' : '#EE4266'},
-                        {'key': '2', 'value': 'Menu Item', 'color': '#29335C'},
+   var dataSource = [  {'key': '1', 'value': 'Menu Item', 'color' : '#EE4266'},
+                        {'key': '2', 'value': 'Menu Item', 'color': '#7789d6'},
                         {'key': '3', 'value': 'Menu Item', 'color': '#F3A712'},
                         {'key': '4', 'value': 'Menu Item', 'color': '#3CBBB1'}
                      ];
