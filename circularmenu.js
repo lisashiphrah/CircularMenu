@@ -112,7 +112,7 @@ $(document).ready(function(){
                     vY = y - pie.center;
                     var tR = Math.sqrt(vX * vX + vY * vY)
                     var canvas = $('#popUp' + ' canvas')[0];
-                    if (tR >= 60 - pie.thickness / 2 && tR <= 60 + pie.thickness / 2) {
+                    if (tR >= 120 - pie.thickness / 2 && tR <= 120 + pie.thickness / 2) {
                         canvas.style.cursor = "pointer";
                     } else {
                         canvas.style.cursor = "default";
