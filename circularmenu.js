@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+     
    var dataSource = [  {'key': '1', 'value': 'Menu Item', 'color' : '#EE4266'},
                         {'key': '2', 'value': 'Menu Item', 'color': '#7789d6'},
                         {'key': '3', 'value': 'Menu Item', 'color': '#F3A712'},
