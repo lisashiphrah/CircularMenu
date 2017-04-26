@@ -10,9 +10,9 @@ $(document).ready(function(){
 
 (function (Pie) {
 
-//-----------------------------------------
+//------------------------------------------
 //	Holds the TEXT data that will be used during drawing on ARC
-//-----------------------------------------
+//------------------------------------------
 
     var arcText = (function () {
         function arcText(x,y, value, angle) {
